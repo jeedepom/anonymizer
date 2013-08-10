@@ -38,6 +38,7 @@ public class Anonymizer {
                 // initialise the member variable
                 HelpFormatter formatter = new HelpFormatter();
                 formatter.printHelp("anonymizer", options);
+                System.exit(0);
             }
         } catch (ParseException exp) {
             // oops, something went wrong
@@ -47,11 +48,13 @@ public class Anonymizer {
             AnonymizerConfig anonymizerConfig =  new AnonymizerConfig("src/main/resources");
         }catch(IOException ioe){
             System.err.println("Loading config failed.  Reason: " + ioe.getMessage());
+            System.exit(1);
         }
         try {
             Files.walkFileTree(Paths.get("src/test/resources"), new DirectoryRenamer(AnonymizerConfig.getConfig(false)) );
         } catch (IOException ex) {
             Logger.getLogger(Anonymizer.class.getName()).log(Level.SEVERE, null, ex);
+            System.exit(1);
         }
     }
 }
