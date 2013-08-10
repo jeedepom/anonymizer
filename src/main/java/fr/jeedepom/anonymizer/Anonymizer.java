@@ -1,5 +1,10 @@
 package fr.jeedepom.anonymizer;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.apache.commons.cli.BasicParser;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -37,6 +42,16 @@ public class Anonymizer {
         } catch (ParseException exp) {
             // oops, something went wrong
             System.err.println("Command line args parsing failed.  Reason: " + exp.getMessage());
+        }
+        try {
+            AnonymizerConfig anonymizerConfig =  new AnonymizerConfig("src/main/resources");
+        }catch(IOException ioe){
+            System.err.println("Loading config failed.  Reason: " + ioe.getMessage());
+        }
+        try {
+            Files.walkFileTree(Paths.get("src/test/resources"), new DirectoryRenamer(AnonymizerConfig.getConfig(false)) );
+        } catch (IOException ex) {
+            Logger.getLogger(Anonymizer.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
