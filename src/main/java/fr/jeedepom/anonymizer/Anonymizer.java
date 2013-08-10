@@ -17,6 +17,8 @@ import org.apache.commons.cli.ParseException;
  *
  */
 public class Anonymizer {
+    
+    static boolean invertMode=false;
 
     public static void main(String[] args) {
 
@@ -40,6 +42,10 @@ public class Anonymizer {
                 formatter.printHelp("anonymizer", options);
                 System.exit(0);
             }
+            if (line.hasOption("i")) {
+                // initialise the member variable
+                invertMode=true;
+            }
         } catch (ParseException exp) {
             // oops, something went wrong
             System.err.println("Command line args parsing failed.  Reason: " + exp.getMessage());
@@ -51,7 +57,7 @@ public class Anonymizer {
             System.exit(1);
         }
         try {
-            Files.walkFileTree(Paths.get("src/test/resources"), new DirectoryRenamer(AnonymizerConfig.getConfig(false)) );
+            Files.walkFileTree(Paths.get("src/test/resources"), new DirectoryRenamer(AnonymizerConfig.getConfig(invertMode)) );
         } catch (IOException ex) {
             Logger.getLogger(Anonymizer.class.getName()).log(Level.SEVERE, null, ex);
             System.exit(1);
