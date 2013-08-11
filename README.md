@@ -37,7 +37,7 @@ Usage :
 
 or (if packaged in a jar-file)
  
-    java -jar anonimizer.jar
+    java -jar anonymizer.jar
 
 or (if you've getted sources with maven)
 
