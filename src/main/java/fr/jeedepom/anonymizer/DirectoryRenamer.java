@@ -39,9 +39,7 @@ public class DirectoryRenamer extends SimpleFileVisitor<Path> {
             System.out.format("Symbolic link: %s will not be treated", file);
         } else if (attr.isRegularFile()) {
             
-            if(changeInFile(file)){
-                System.out.format("Regular file: %s ", file);
-            }
+            replaceInFile(file);
         } else {
             System.out.format("Other: %s ", file);
         }
@@ -80,7 +78,7 @@ public class DirectoryRenamer extends SimpleFileVisitor<Path> {
         return FileVisitResult.CONTINUE;
     }
 
-    private boolean changeInFile(Path path) {
+    private boolean replaceInFile(Path path) {
         boolean result=false;
         try {
             Charset charset = StandardCharsets.UTF_8;
