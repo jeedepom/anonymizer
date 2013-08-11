@@ -4,7 +4,7 @@
 
   <groupId>jeedepom</groupId>
   <artifactId>anonymizer</artifactId>
-  <version>0.1-SNAPSHOT</version>
+  <version>1.0</version>
   <packaging>jar</packaging>
 
   <name>anonymizer</name>
