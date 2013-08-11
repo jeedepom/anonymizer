@@ -43,7 +43,6 @@ public class DirectoryRenamer extends SimpleFileVisitor<Path> {
         } else {
             System.out.format("Other: %s ", file);
         }
-        System.out.println("(" + attr.size() + "bytes)");
         return FileVisitResult.CONTINUE;
     }
 
