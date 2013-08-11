@@ -2,13 +2,25 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>jeedepom</groupId>
+  <groupId>fr.jeedepom</groupId>
   <artifactId>anonymizer</artifactId>
   <version>1.0</version>
   <packaging>jar</packaging>
 
   <name>anonymizer</name>
   <url>https://github.com/jeedepom/anonymizer</url>
+  <developers>
+      <developer>
+          <name>Guillotin</name>
+          <email>jeedepom@gmail.com</email>
+          <organization>JeeDePom</organization>
+          <organizationUrl>http://www.jeedepom.fr</organizationUrl>
+          <roles>
+              <role>author</role>
+              <role>Java Developer</role>
+          </roles>    
+      </developer>
+  </developers>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
