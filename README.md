@@ -4,29 +4,28 @@ anonymizer
 Goal :
 ------
 
-Anonymizer is a tool for anomize my own projet to publish it under the JeeDePom name.
+Anonymizer is a java tool for anonymize my own projet to publish it under another name. (currently JeeDePom)
 
 It does : 
 - change the name of the directory
 - change the name of the package in source code files
 - change the name of author
+- revert the changes with the -i option.
 
-For the moment, this projet is written in bash
 
 installation :
 --------------
 
-place anonymizer.sh in your $PATH (or run it will an absolute path)
-place a config file named anonymizer.conf in your projet
-tell git to forget anonymizer.conf file 
-	echo "anonymizer.conf" >> .gitignore
+- place a config file named anonymizer.properties in the *root directory* of your projet
+- eventually tell git to forget anonymizer.properties file via the command 
+	echo "anonymizer.properties" >> .gitignore
 
 
-syntax of a config file
+syntax of a config file (named anonymizer.properties)
 -----------------------
 
 	valeur1=valeur2
-	companie=jeedepom
+	masociete=jeedepom
 	repertoire1=repertoire2
 	marcel=guillotin
 
@@ -35,8 +34,18 @@ syntax of a config file
 Usage :
 -------
 
-anonimyzer.sh 
+    java anonymizer [-h|-i] project-directory
+
+or (if packaged in a jar-file) 
+    java -jar anonimizer.jar
+
+or (if you've getted sources with maven)
+    process-classes org.codehaus.mojo:exec-maven-plugin:1.2.1:exec -Dexec.args=-classpath %classpath fr.jeedepom.anonymizer.Anonymizer  src/test/resources -Dexec.executable=/usr/java/latest/bin/java -Dexec.classpathScope=runtime
 
 
-
-
+TODO :
+- probably some refactoring to clarify classes
+- find a way to completly refactor package directory : 
+* a directory became two directories ( mycompagny <-> fr.newname ), actually it only rename one to another.
+* correct the package name with the news directories
+- find a way to replace only a word by another. Actually changing "de" by "fr" would cause serious problems, for 'default' java keyword
