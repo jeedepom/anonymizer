@@ -31,6 +31,9 @@ public class DirectoryRenamer extends SimpleFileVisitor<Path> {
     @Override
     public FileVisitResult visitFile(Path file,
             BasicFileAttributes attr) {
+        if(file.endsWith(AnonymizerConfig.PROPERTIES_FILENAME)){
+            return  FileVisitResult.CONTINUE;
+        }
         if (attr.isSymbolicLink()) {
             System.out.format("Symbolic link: %s will not be treated", file);
         } else if (attr.isRegularFile()) {

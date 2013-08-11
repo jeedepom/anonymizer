@@ -17,13 +17,14 @@ import org.apache.commons.lang3.StringUtils;
 public class AnonymizerConfig {
 
     static Properties properties;
+    public static final String PROPERTIES_FILENAME = "anonymizer.properties";
 
     public AnonymizerConfig(String pathname) throws IOException {
 
         if(StringUtils.isEmpty(pathname)){
             pathname="./";
         }
-        Path path = FileSystems.getDefault().getPath(pathname, "anonymizer.properties");
+        Path path = FileSystems.getDefault().getPath(pathname, PROPERTIES_FILENAME);
         properties=new Properties();
         properties.load( Files.newInputStream(path, StandardOpenOption.READ));
         
